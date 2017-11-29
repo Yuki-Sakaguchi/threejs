@@ -1,0 +1,28 @@
+/* ====================
+  common
+==================== */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+}
+
+
+/* ====================
+  canvas
+==================== */
+.canvas {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+.canvas canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  vertical-align: bottom;
+}
