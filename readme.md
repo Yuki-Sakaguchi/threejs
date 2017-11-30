@@ -1,2 +1,2 @@
 ## DEMO
-https://yuki-sakaguchi.github.io/threejs
+https://yuki-sakaguchi.github.io/threejs/01_sample/
