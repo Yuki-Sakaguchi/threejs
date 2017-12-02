@@ -39,17 +39,18 @@ function main() {
     sphereBody.position.set(0,5,0);
     sphereBody.linearDamping = 0.9;
     world.add(sphereBody);
+    
     controls = new PointerLockControls(camera, sphereBody);
     scene.add(controls.getObject());
 
-    var pointerlockchange = function(event) {
-      if (document.pointerLockElement === element || document.mozPointerLockElement === element || document.webkitPointerLockElement === element ) {
-          controls.enabled = true;
-      } else {
-          controls.enabled = false;
-      }
-    }
-    document.addEventListener('pointerlockchange', pointerlockchange);
+    // var pointerlockchange = function(event) {
+    //   if (document.pointerLockElement === element || document.mozPointerLockElement === element || document.webkitPointerLockElement === element ) {
+    //     controls.enabled = true;
+    //   } else {
+    //     controls.enabled = false;
+    //   }
+    // }
+    // document.addEventListener('pointerlockchange', pointerlockchange);
   }
 
   // レンダリング
