@@ -5,6 +5,7 @@ function main() {
   var elCanvas = document.getElementById('canvas');
   var targetRotation = 0;
   var time = Date.now();
+  var fps = 1/20;
 
   // シーン
   var scene, world;
@@ -24,7 +25,7 @@ function main() {
   // カメラ
   var camera, controller;
   function initCamera() {
-    fov = 70, // 画角
+    fov = 50, // 画角
     aspect = elCanvas.clientWidth / elCanvas.clientHeight, // アスペクト比
     near = 1, // この値より手前は描画されない 
     far = 1000, // この値より奥は描画されない
@@ -89,14 +90,14 @@ function main() {
   function initBox() {
     var boxMass = 1; // 箱の質量
     var boxShape = new CANNON.Box(new CANNON.Vec3(5, 5, 5)); // 箱の形状
-    var phyBox = new CANNON.Body({mass: boxMass, shape: boxShape}); // 箱作成
-    phyBox.position.set(0, 20, 0); // 箱の位置
+    phyBox = new CANNON.Body({mass: boxMass, shape: boxShape}); // 箱作成
+    phyBox.position.set(0, 100, 0); // 箱の位置
     phyBox.angularVelocity.set(0.1, 0.1, 0.1); // 角速度
     phyBox.angularDamping = 0.1; // 減衰率
     world.addBody(phyBox);
 
-    var boxGeometry = new THREE.BoxGeometry(100, 100, 100);
-    var boxMaterial = new THREE.MeshPhongMaterial({color: 0xffffff});
+    var boxGeometry = new THREE.BoxGeometry(50, 50, 50);
+    var boxMaterial = new THREE.MeshPhongMaterial({color: 0xff0000});
     box = new THREE.Mesh(boxGeometry, boxMaterial);
     scene.add(box);
   }
@@ -105,13 +106,16 @@ function main() {
   function renderLoop() {
     requestAnimationFrame(renderLoop);
 
-    world.step(1 / 60);
+    world.step(fps);
 
     plane.position.copy(phyPlane.position);
     plane.quaternion.copy(phyPlane.quaternion);
 
+    box.position.copy(phyBox.position);
+    box.quaternion.copy(phyBox.quaternion);
+
     // if (controls.enabled) {
-    //   world.step(1 / 60);
+    //   world.step(fps);
       
     //   plane.position.copy(phyPlane.position);
     //   plane.quaternion.copy(phyPlane.quaternion);
